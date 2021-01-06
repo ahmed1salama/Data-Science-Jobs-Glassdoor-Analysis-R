@@ -60,31 +60,89 @@ data = data %>%
 
 # R 
 data = data %>%
-  mutate(
-    R = case_when(str_detect(str_to_lower(Job_Description), fixed("r studio")) | str_detect(str_to_lower(Job_Description), fixed("r-studio")) ~ 1, TRUE ~ 0)
-  )
+          mutate(
+            R = case_when(str_detect(str_to_lower(Job_Description), fixed("r studio")) | str_detect(str_to_lower(Job_Description), fixed("r-studio")) ~ 1, TRUE ~ 0)
+          )
 
 # spark
 data = data %>%
-  mutate(
-    spark = case_when(str_detect(str_to_lower(Job_Description), fixed("spark")) ~ 1, TRUE ~ 0)
-  )
+          mutate(
+            spark = case_when(str_detect(str_to_lower(Job_Description), fixed("spark")) ~ 1, TRUE ~ 0)
+          )
 
 # aws
 data = data %>%
-  mutate(
-    aws = case_when(str_detect(str_to_lower(Job_Description), fixed("aws")) ~ 1, TRUE ~ 0)
-  )
+          mutate(
+            aws = case_when(str_detect(str_to_lower(Job_Description), fixed("aws")) ~ 1, TRUE ~ 0)
+          )
 
 # excel
 data = data %>%
-  mutate(
-    excel = case_when(str_detect(str_to_lower(Job_Description), fixed("excel")) ~ 1, TRUE ~ 0)
-  )
+          mutate(
+            excel = case_when(str_detect(str_to_lower(Job_Description), fixed("excel")) ~ 1, TRUE ~ 0)
+          )
 
 # removing the un necessary Salary_Cleaned column
 data = data %>% 
           select(- Salary_Cleaned)
+
+# ectracting job role and seniority level from the job title
+data = data %>%
+          mutate(Job_Simp = case_when(str_detect(str_to_lower(Job_Title), "data scientist") ~ "data scientist",
+                                      str_detect(str_to_lower(Job_Title), "data engineer") ~ "data engineer",
+                                      str_detect(str_to_lower(Job_Title), "analyst") ~ "analyst",
+                                      str_detect(str_to_lower(Job_Title), "machine learning") ~ "mle",
+                                      str_detect(str_to_lower(Job_Title), "manager") ~ "manager",
+                                      str_detect(str_to_lower(Job_Title), "director") ~ "director",
+                                      TRUE ~ "NA"),
+                 Seniority = case_when(str_detect(str_to_lower(Job_Title), fixed("sr")) | 
+                                         str_detect(str_to_lower(Job_Title), "senior") |
+                                         str_detect(str_to_lower(Job_Title), "lead") |
+                                         str_detect(str_to_lower(Job_Title), "principal") ~ "senior",
+                                       str_detect(str_to_lower(Job_Title), fixed("jr"))|
+                                         str_detect(str_to_lower(Job_Title), "junior") |
+                                         str_detect(str_to_lower(Job_Title), "entry level") ~ "junior",
+                                       TRUE ~ "NA"))
+          
+
+
+sum((data$Seniority == "NA"))
+
+# seems like 519/742 of the seniority are NAs which means that almost all the titles do not inculde 
+# the seniority level so I guess it's better to drop that field 
+data = data %>% 
+          select(- Seniority)
+
+
+# fix state Los Angeles as there looks like a state "Los Angeles" only once in the data 
+# Los Angeles -> CA 
+table(data$Job_State)
+data[data$Job_State == "Los Angeles", "Job_State"] = "CA"
+table(data$Job_State)
+
+
+# create a new variable desc_len = length of the hob description 
+data = data %>%
+          mutate(Desc_Len = str_length(Job_Description))
+
+
+# create a new variable num_comp = number of competitors of the company 
+data = data %>%
+          mutate(Num_Comp = case_when(Competitors != "-1" ~ sapply(str_split(Competitors, ","), length),
+                                      TRUE ~ 0L))
+
+
+# fix the Salary_Estimate_Mean for hourly provided salary, assuming 2000 hours in a year 
+# Salary_Estimate_Min = Salary_Estimate_Min * 2000 = Salary_Estimate_Min * 2 per K 
+# same as Salary_Estimate_Max
+
+data = data %>%
+          mutate(Hourly = case_when(str_detect(str_to_lower(Salary_Estimate), "per hour") ~ 1,
+                                    TRUE ~ 0),
+                 Salary_Cleaned_Min =  case_when(Hourly == 1  ~ Salary_Cleaned_Min * 2, TRUE ~ Salary_Cleaned_Min),
+                 Salary_Cleaned_Max =  case_when(Hourly == 1  ~ Salary_Cleaned_Max * 2, TRUE ~ Salary_Cleaned_Max),
+                 Salary_Estimate_Mean = (Salary_Cleaned_Min + Salary_Cleaned_Max) / 2)
+
 
 # writing data into data_cleaned.csv
 write_csv(data, "data_cleaned.csv")

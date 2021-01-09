@@ -1,9 +1,19 @@
 library(tidyverse)
 library(usmap)
 library(scales)
+library(png)
 data = read_csv("data_cleaned.csv")
 
 summary(data)
+
+
+# it looks like we have categorical data which are:
+# 1- Size
+# 2- Type_of_ownership
+# 3- Industry 4- Sector
+# 5- Job_State
+# 6- Job_simp = Job title 
+# 7- Skills 
 
 
 # it looks like we have numerical variables which are:
@@ -14,13 +24,7 @@ summary(data)
 # 5- Rating
 
 
-# it looks like we have categorical data also which are:
-# 1- Size
-# 2- Type_of_ownership
-# 3- Industry 4- Sector
-# 5- Job_State
-# 6- Job_simp = Job title 
-# 7- Skills 
+
 
 # now let's do some EDA to see the effect of the several indep. variables on the dep. variable (Salary)
 # also on the no. of job postings
@@ -55,7 +59,9 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Number of job postings Vs. Company size") +
   labs(y= "Job Postings", x = "Company Size") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) 
+dev.copy(png, file="postings_company_size.png", width=480, height=480)
+dev.off()
 
 # looks like that medium-large companies(501 - 1000, 1001 - 5000) are hiring the most
 
@@ -73,7 +79,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Number of job postings Vs. Company type") +
   labs(y= "Job Postings", x = "Company Type") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("postings_company_type.png")
 
 # looks like that the private companies are hiring the most
 
@@ -96,7 +103,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Number of job postings Vs. Industry") +
   labs(y= "Job Postings", x = "Industry") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("postings_industry.png")
 # from here we can see that the top most hiring industries are
 # 1 Biotech & Pharmaceuticals                 
 # 2 Insurance Carriers                         
@@ -129,13 +137,15 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Number of job postings Vs. State") +
   labs(y= "Job Postings", x = "State") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  ggsave("postings_state.png")
 
 
 plot_usmap(data = data%>%count(Job_State)%>% mutate(state = Job_State), values = "n", color = "deepskyblue4", labels = TRUE) + 
   scale_fill_continuous(low = "white", high = "darkblue", name = "Job Postings Count", label = scales::comma) + 
   ggtitle("Number of job postings Vs. State") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  ggsave("postings_state_map.png")
 
 
 # from here we can see that there are very big opportunities in California, Massachusetts and New York
@@ -148,7 +158,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Salary Estimate Vs. State") +
   labs(y= "Salary", x = "State") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_state.png")
 
 
 
@@ -157,7 +168,8 @@ plot_usmap(data = data %>%
              summarise(mean = mean(Salary_Estimate_Mean)) %>% mutate(state = Job_State), values = "mean", color = "deepskyblue4", labels = TRUE) + 
   scale_fill_continuous(low = "white", high = "darkblue", name = "Salary", label = scales::comma) + 
   ggtitle("Salary Estimate Vs. State") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  ggsave("salary_state_map.png")
 
 
 
@@ -175,7 +187,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Number of job postings Vs. Title") +
   labs(y= "Job Postings", x = "Title") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("postings_title.png")
 
 
 data %>%
@@ -187,7 +200,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Salary Estimate Vs. Title") +
   labs(y= "Salary", x = "Title") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_title.png")
 
 
 # top wanted positions in each Industry
@@ -203,7 +217,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Top wanted positions in each industry") +
   labs(y= "Job Postings", x = "Industry", fill = "Title") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  ggsave("postings_industry_positions.png")
 
 
 
@@ -220,7 +235,8 @@ data %>%
   theme(axis.text.x = element_text(angle=90)) + 
   ggtitle("Top wanted positions in each state") +
   labs(y= "Job Postings", x = "State", fill = "Title") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("postings_state_positions.png")
 
 
 ############################################################################
@@ -246,7 +262,8 @@ skills %>%
   geom_text(aes(label= round(skills_percent * 100, 2))) + 
   ggtitle("Percentage of skills required") +
   labs(y= "Percntage", x = "Skill") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("skills.png")
 
 
 ############################################################################
@@ -266,7 +283,8 @@ data %>%
   geom_density() +
   ggtitle("Company age distribution") +
   labs(y= "Density", x = "Company Age") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("company_age_dist.png")
 
 #It seems like the Age is right skewed meaning that most of the companies in the data set are not old 
 
@@ -277,7 +295,8 @@ data %>%
   geom_smooth() +
   ggtitle("Salary Vs. Company age") +
   labs(y= "Salary", x = "Company Age") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_company_age.png")
 
 # There is no correlation between the Company Age and Salary
 
@@ -290,7 +309,8 @@ data %>%
   geom_density() +
   ggtitle("Job description length destribution") +
   labs(y= "Density", x = "Description Length") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  ggsave("description_len_dist.png")
 
 # looks like the length of the job description is normally destributed
 
@@ -301,7 +321,8 @@ data %>%
   geom_smooth() +
   ggtitle("Salary Vs. Description length") +
   labs(y= "Salary", x = "Description Length") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_description_length.png")
 
 # seems like the length of the job description and the expected salary are not correlated
 
@@ -315,7 +336,8 @@ data %>%
   geom_histogram() +
   ggtitle("Company competitors destribution") +
   labs(y= "Count", x = "Number of Competitors") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("competitors_dist.png")
 
 # looks like we got a "zero inflation" problem 
 # a better visualization would be 
@@ -325,7 +347,8 @@ data %>%
   geom_boxplot() +
   ggtitle("Salary Vs. Has competitors") +
   labs(y= "Salary", x = "Has competitors") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_has_competitor.png")
 # from here we can see that the salary destribution for companies who have competitors
 # and companies which do not have is almost the same  
 
@@ -339,7 +362,8 @@ data %>%
   geom_density() +
   ggtitle("Rating Destribution") +
   labs(y= "Density", x = "Rating") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("rating_dist.png")
 
 # looks like the rating is normally destriputed 
 
@@ -350,7 +374,8 @@ data %>%
   geom_smooth() +
   ggtitle("Salary Vs. Rating") +
   labs(y= "Salary", x = "Rating") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ggsave("salary_rating.png")
 # does not seem that the Rating is correlated with the Salary
 
 

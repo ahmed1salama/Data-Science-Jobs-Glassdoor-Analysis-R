@@ -61,3 +61,4 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 
 ## Findings
 1- Company Size
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_company_size.png "Postings by Company Size")

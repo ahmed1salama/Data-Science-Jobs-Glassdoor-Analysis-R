@@ -69,14 +69,14 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 
 *	Company Size
 
-![alt text]( "Postings by Company Type")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_company_type.png "Postings by Company Type")
 
 	*looks like that the private companies are hiring the most
 	
 	
 *	Industry
 
-![alt text]( "Postings by Company Industry")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_industry.png "Postings by Company Industry")
 
 	*from here we can see that the top most hiring industries are
 		1. Biotech & Pharmaceuticals                 
@@ -89,83 +89,83 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 			
 *	State
 
-![alt text]( "Postings by State")
-![alt text]( "Postings by State Map")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_state.png "Postings by State")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_state_map.png "Postings by State Map")
 
 	*from here we can see that there are very big opportunities in California, Massachusetts and New York
 	
-![alt text]( "Salary by State")
-![alt text]( "Salary by State Map")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_state.png "Salary by State")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_state_map.png "Salary by State Map")
 
 	*from here we can see that the top salaries are in California, Illinois and Washington D.C
 	
 	
 *	Title
 
-![alt text]( "Postings by Title")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_title.png "Postings by Title")
 
 	*the most wanted position is "Data Scientist"  followed by "Machine Learning Engineer"
 	
-![alt text]( "Salary by Title")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_title.png "Salary by Title")
 	
 	*the top salaries are given to "Director"  followed by "Machine Learning Engineer"
 	
-![alt text]( "Postings of each position by Industry")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_industry_positions.png "Postings of each position by Industry")
 
 	*here we can see the top 3 positions in each industry"
 
-![alt text]( "Postings of each position by state")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_state_positions.png "Postings of each position by state")
 
 	*here we can see the top 3 positions in each state"
 	
 *	Skills
 
-![alt text]( "Skills")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/skills.png "Skills")
 
 	*here we can see the percentage of wanted skills in the job postings
 	
 	
 *	Company Age
 
-![alt text]( "Company Age Distribution")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/company_age_dist.png "Company Age Distribution")
 
 	*It seems like the Age is right skewed meaning that most of the companies in the data set are not old 
 	
-![alt text]( "Company Age - Salary relation")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_company_age.png "Company Age - Salary relation")
 
 	*There is no correlation between the Company Age and Salary
 	
 
 *	Job Description Length
 
-![alt text]( "Description Length Distribution")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/description_len_dist.png "Description Length Distribution")
 
 	*looks like the length of the job description is normally destributed
 	
-![alt text]( "Description Length - Salary relation")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_description_length.png "Description Length - Salary relation")
 
 	*seems like the length of the job description and the expected salary are not correlated
 	
 
 *	Number of Company Competitors
 
-![alt text]( "Company Competitors Distribution")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/competitors_dist.png "Company Competitors Distribution")
 
 	*looks like we got a "zero inflation" problem 
 	*change number of competitors to a boolean "has competitor"
 	
-![alt text]( "Salary - Has Competitor relation")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_description_length.png "Salary - Has Competitor relation")
 
 	*from here we can see that the salary destribution for companies who have competitors and companies which do not have is almost the same  
 	
 
 *	Company Rating
 
-![alt text]( "Company Raring Distribution")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/rating_dist.png "Company Raring Distribution")
 
 	*looks like the rating is normally destriputed 
 	
-![alt text]( "Salary - Raring relation")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_rating.png "Salary - Raring relation")
 
 	*does not seem that the Rating is correlated with the Salary
 	

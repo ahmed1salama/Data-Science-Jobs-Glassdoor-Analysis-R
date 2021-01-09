@@ -17,7 +17,7 @@ the most wanted skills, Salary ranges for each posititon, etc.
 * scales
 
 
-## Data source credit
+## Data Source Credit
 
 https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 

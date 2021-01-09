@@ -67,7 +67,7 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 	*looks like that medium-large companies(501 - 1000, 1001 - 5000) are hiring the most
 	
 
-*	Company Size
+*	Company Type
 
 ![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_company_type.png "Postings by Company Type")
 

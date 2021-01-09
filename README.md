@@ -154,7 +154,7 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 	*looks like we got a "zero inflation" problem 
 	*change number of competitors to a boolean "has competitor"
 	
-![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_description_length.png "Salary - Has Competitor relation")
+![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_has_competitor.png "Salary - Has Competitor relation")
 
 	*from here we can see that the salary destribution for companies who have competitors and companies which do not have is almost the same  
 	

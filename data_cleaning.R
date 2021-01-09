@@ -61,7 +61,7 @@ data = data %>%
 # R 
 data = data %>%
           mutate(
-            R = case_when(str_detect(str_to_lower(Job_Description), fixed("r studio")) | str_detect(str_to_lower(Job_Description), fixed("r-studio")) ~ 1, TRUE ~ 0)
+            R = case_when(str_detect(str_to_lower(Job_Description), fixed("r studio")) | str_detect(str_to_lower(Job_Description), fixed("r-studio")) |str_detect(str_to_lower(Job_Description)," r\\W") ~ 1, TRUE ~ 0)
           )
 
 # spark
@@ -146,3 +146,4 @@ data = data %>%
 
 # writing data into data_cleaned.csv
 write_csv(data, "data_cleaned.csv")
+

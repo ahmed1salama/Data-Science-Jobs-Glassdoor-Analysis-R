@@ -95,7 +95,7 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 	*from here we can see that there are very big opportunities in California, Massachusetts and New York
 	
 ![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/salary_state.png "Salary by State")
-![alt text](https://github.com/ahmed1salama/ds_glassdoor_salary_analysis_R/blob/master/graphs/postings_state_map.png "Salary by State Map")
+![alt text](https://github.com/ahmed1salama/Data-Science-Jobs-Glassdoor-Analysis-R/blob/master/graphs/salary_state_map.png "Salary by State Map")
 
 	*from here we can see that the top salaries are in California, Illinois and Washington D.C
 	

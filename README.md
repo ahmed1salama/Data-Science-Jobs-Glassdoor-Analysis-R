@@ -25,20 +25,20 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 ## Data Cleaning
 
 * Categorical data:
-	1. Size
-	2. Type_of_ownership
-	3. Industry 
-	4. Sector
-	5. Job_State
-	6. Job_simp = Job title 
-	7. Skills 
+	* Size
+	* Type_of_ownership
+	* Industry 
+	* Sector
+	* Job_State
+	* Job_simp = Job title 
+	* Skills 
 	
 * Numerical data:
-	1. Salary_Estimate_Mean (dependent variable)
-	2. Company_Age = no. of years since this company was established
-	3. Desc_len = the length of the job description 
-	4. Num_comp =  no. of competitors of the company posting the job
-	5. Rating
+	* Salary_Estimate_Mean (dependent variable)
+	* Company_Age = no. of years since this company was established
+	* Desc_len = the length of the job description 
+	* Num_comp =  no. of competitors of the company posting the job
+	* Rating
 
 *	Changed column names 
 *	Removed rows without salary 
@@ -46,7 +46,7 @@ https://github.com/PlayingNumbers/ds_salary_proj/blob/master/glassdoor_jobs.csv
 *	Made a new column for company name [by removing the company rate from the company name]
 *	Made a new column for state [by extracting the state from the location]
 *	Made a new column for company age [by calculating the company age from the founded variable]
-*	Added a column for if the job was at the company’s headquarters 
+*	Added a column that tells if the job was at the company’s headquarters 
 *	Made columns for if different skills were listed in the job description:
     * Python  
     * R  
